@@ -1,0 +1,412 @@
+/* Ensure proper font import and body styling */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+body {
+    background-color: #e6e6e6;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+}
+
+/* Header styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #b50024;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+header .logo-container {
+    display: flex;
+    align-items: center;
+    margin-left: 100px;
+}
+
+header .logo-container img {
+    width: 40px;
+    margin-right: 10px;
+}
+
+header h1 {
+    font-size: 36px;
+    color: white;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Main container styles */
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 50px 50px 0;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Checkout and additional sections */
+.checkoutsection,
+.additionalsection {
+    width: 640px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.checkoutsection h1,
+.additionalsection h1 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* Styling for subtotal text and amount in checkoutsection */
+.checkoutsection .order-summary-item {
+    display: flex;
+    justify-content: center; /* Center-align items horizontally */
+    align-items: center;
+    margin-top: 50px;
+}
+
+.checkoutsection .order-summary-item h2 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center; /* Center-align the heading */
+    color: #565360;
+}
+
+.checkoutsection .order-summary-item .subtotal-amount {
+    font-size: 20px;
+    font-weight: 600;
+    color: #565360;
+    text-align: center; /* Center-align the amount */
+    margin-left: 10px; /* Space between text and amount */
+}
+
+
+
+
+
+/* Order summary section */
+.additionalsection h2 {
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 50px;
+    text-align: left; /* Align text to the left */
+}
+
+/* Summary list */
+.summary {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.summary li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.summary li img {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.summary li div {
+    flex: 1;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Checkout total and button */
+.checkout-total {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+.checkout-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #b50024;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.checkout-button:hover {
+    background-color: #8c001c;
+}
+
+/* Order summary item layout */
+.additionalsection .order-summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px; /* Adjust margin as needed */
+}
+
+.additionalsection .order-summary-item h2 {
+    margin: 0;
+}
+
+.additionalsection .order-summary-item span {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+/* Additional notes input field */
+.additionalsection .order-summary-item input.additional-notes {
+    font-size: 20px;
+    font-weight: 400;
+    width: 450px; /* Adjust width as needed */
+    text-align: left;
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    transition: border-color 0.3s; /* Add a transition for smooth effect */
+}
+
+.additionalsection .order-summary-item input.additional-notes:focus {
+    border-color: #37B9F1; /* Change border color on focus */
+    outline: none; /* Remove default focus outline */
+}
+
+.additionalsection .order-summary-item .button {
+    padding: 8px 28px;
+    border: 2px solid transparent;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50px;
+    background: #37B9F1;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.4s ease;
+    text-decoration: none; /* Remove underline from text */
+    margin-left: 10px; /* Adjust margin as needed */
+}
+
+.additionalsection .order-summary-item .button:hover {
+    color: white;
+    background: rgb(46, 191, 30);
+    border-color: transparent;
+}
+
+.additionalsection .order-summary-item .checkout-button {
+    display: block;
+    margin: 20px auto; /* Centering the button horizontally */
+    padding: 12px 24px;
+    border: 2px solid transparent;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50px;
+    background-color: #b50024;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+
+.additionalsection .order-summary-item .checkout-button:hover {
+    background-color: rgb(46, 191, 30);
+}
+
+.additionalsection .order-summary-item .total-amount {
+    color: rgb(255, 166, 0);
+    font-weight: 600;
+}
+
+/* Payment method section styling */
+.additionalsection .order-summary-item.payment-method {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px; /* Adjust margin as needed */
+}
+
+.additionalsection .order-summary-item.payment-method .payment-option {
+    border: 1px solid #ddd; /* Border around each option */
+    padding: 10px; /* Padding inside each box */
+    border-radius: 5px; /* Rounded corners */
+    margin-bottom: 10px; /* Space between boxes */
+    width: 100%; /* Full width of the container */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    background-color: #f9f9f9; /* Light background color */
+    text-align: left; /* Align text to the left */
+}
+
+.additionalsection .order-summary-item.payment-method label {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    width: 100%; /* Ensure the label takes the full width */
+}
+
+.additionalsection .order-summary-item.payment-method label input[type="radio"] {
+    margin-right: 10px; /* Adjust margin as needed */
+    transform: scale(1.2); /* Increase the size of the radio button */
+    cursor: pointer; /* Change cursor to pointer */
+    accent-color: rgb(46, 191, 30); /* Customize radio button color */
+}
+
+.additionalsection .order-summary-item.payment-method .description {
+    font-size: 14px; /* Adjust font size as needed */
+    color: #666; /* Adjust color as needed */
+    margin-top: 5px; /* Adjust margin as needed */
+    text-align: left; /* Align text to the left */
+}
+
+/* Optional: Additional hover effect for radio buttons */
+.additionalsection .order-summary-item.payment-method input[type="radio"]:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Add a shadow on hover */
+}
+
+/* Popup message styling */
+.popup {
+    display: none; /* Initially hidden */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease forwards; /* Fade in animation for background */
+}
+
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    transform: translateY(-100%); /* Initially off-screen */
+    animation: slideIn 0.7s ease forwards; /* Slide in animation for content */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* Styling for Popup 2 message */
+#order-popup .popup-icon {
+    font-size: 48px; /* Adjust size as needed */
+    color: rgb(46, 191, 30); /* Match the button color */
+    margin-bottom: 20px; /* Adjust spacing */
+    display: block; /* Ensure block-level display for proper alignment */
+}
+
+.popup h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.popup p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.popup .button {
+    padding: 10px 20px;
+    border: 2px solid transparent;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50px;
+    background: #37B9F1;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.4s ease;
+    text-decoration: none;
+}
+
+.popup .button:hover {
+    background: rgb(46, 191, 30);
+}
+
+.button-link {
+    text-decoration: none;
+}
+
+
+/* Styling for Popup 2 message */
+#checkout-popup .popup-icon {
+    font-size: 48px; /* Adjust size as needed */
+    color: #37B9F1; /* Match the button color */
+    margin-bottom: 20px; /* Adjust spacing */
+    display: block; /* Ensure block-level display for proper alignment */
+}
+
+#checkout-popup .button {
+    padding: 10px 20px;
+    border: 2px solid transparent;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.4s ease;
+    text-decoration: none;
+    margin-right: 10px; /* Add margin between buttons */
+    width: 100px; /* Adjust width as needed */
+}
+
+#checkout-popup #popup-yes-button {
+    background-color: #37B9F1;
+    color: #ffffff;
+}
+
+#checkout-popup #popup-no-button {
+    background-color: #37B9F1;
+    color: #ffffff;
+}
+
+#checkout-popup .button:hover {
+    transform: scale(1.05); /* Optional: Add a scaling effect on hover */
+}
+
+#checkout-popup #popup-yes-button:hover {
+    background-color: rgb(46, 191, 30); /* Green color */
+}
+
+#checkout-popup #popup-no-button:hover {
+    background-color: red; /* Lighter red color */
+}
+
+
+
+

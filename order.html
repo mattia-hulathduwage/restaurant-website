@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpiceyPanda/order</title>
+    <link rel="stylesheet" href="order.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="images/spicepanda.png" alt="Logo">
+            <h1>SpiceyPanda</h1>
+        </div>
+        <div class="shopping">
+            <img src="images/add_cart.svg" alt="Shopping Cart">
+            <span class="quantity">0</span>
+        </div>
+    </header>
+    
+    <div class="menuselection">
+        <div class="selectionbutton">
+            <a href="#container" class="button">Appetizers</a>
+            <a href="#container2" class="button">Thai</a>
+            <a href="#container3" class="button">International</a>
+            <a href="#container4" class="button">Beverages</a>
+            <a href="#container5" class="button">Desserts</a>
+          </div>
+    </div>
+
+
+    <div id="container" class="container">
+        <div class="listname"><h2>Appetizers</h2></div>
+        <div class="list">
+            <!-- Your list items go here -->
+        </div>
+    </div>
+
+    <div id="container2" class="container2">
+        <div class="listname2"><h2>Thai Mains</h2></div>
+        <div class="list2">
+            <!-- Your list items go here -->
+        </div>
+    </div>
+
+    <div id="container3" class="container3">
+        <div class="listname3"><h2>International Mains</h2></div>
+        <div class="list3">
+            <!-- Your list items go here -->
+        </div>
+    </div>
+    
+    <!-- New Container for another International Mains -->
+    <div id="container4" class="container4">
+        <div class="listname4"><h2>Beverages</h2></div>
+        <div class="list4">
+            <!-- Your list items go here -->
+        </div>
+    </div>
+
+    <div id="container5" class="container5">
+        <div class="listname5"><h2>Desserts</h2></div>
+        <div class="list5">
+            <!-- Your list items go here -->
+        </div>
+    </div>
+
+    <div class="card">
+        <h1>Cart</h1>
+        <ul class="listCard">
+            <!-- Your cart items go here -->
+        </ul>
+        <div class="checkOut">
+            <div class="total" id="total">0</div>
+            <div class="closeShopping">Close</div>
+        </div>
+    </div>
+
+    <!-- BACK TO TOP BUTTON -->
+	<a href="#" class="back-to-top">
+		<span class="material-icons">arrow_upward</span>
+	</a>
+
+    <div id="popup" class="popup">
+        <span>Successfully added to cart.</span>
+    </div>
+
+    <script src="order.js"></script>
+</body>
+</html>

@@ -1,0 +1,395 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+/* Sets the background color for the entire body and specifies the font */
+body {
+    background-color: white; /* Light grey background color for the entire page */
+    font-family: 'Poppins', sans-serif; /* Uses the imported Google Font */
+    margin: 0; /* Removes default margin */
+}
+
+/* Container for centering content and applying a transition effect */
+.container {
+    width: 1300px; /* Sets a fixed width for the container */
+    margin: auto; /* Centers the container horizontally */
+    transition: 0.5s; /* Smooth transition effect for changes */
+    margin-bottom: 90px;
+}
+
+/* Container for centering content and applying a transition effect */
+.container2 {
+    width: 1300px; /* Sets a fixed width for the container */
+    margin: auto; /* Centers the container horizontally */
+    transition: 0.5s; /* Smooth transition effect for changes */
+    margin-bottom: 90px;
+}
+
+/* Container for centering content and applying a transition effect */
+.container3 {
+    width: 1300px; /* Sets a fixed width for the container */
+    margin: auto; /* Centers the container horizontally */
+    transition: 0.5s; /* Smooth transition effect for changes */
+    margin-bottom: 90px;
+}
+
+/* Container for centering content and applying a transition effect */
+.container4 {
+    width: 1300px; /* Sets a fixed width for the container */
+    margin: auto; /* Centers the container horizontally */
+    transition: 0.5s; /* Smooth transition effect for changes */
+    margin-bottom: 90px;
+}
+
+/* Container for centering content and applying a transition effect */
+.container5 {
+    width: 1300px; /* Sets a fixed width for the container */
+    margin: auto; /* Centers the container horizontally */
+    transition: 0.5s; /* Smooth transition effect for changes */
+    margin-bottom: 90px;
+}
+
+
+/* Header styling to use a flex layout */
+header {
+    display: flex; /* Uses flexbox layout for header elements */
+    justify-content: space-between; /* Distributes space between elements */
+    align-items: center; /* Vertically centers the content */
+    padding: 20px; /* Adds padding to the header */
+    background-color: #b50024; /* Background color for the header */
+    width: 100%; /* Full width */
+    box-sizing: border-box; /* Includes padding and border in the element's total width and height */
+}
+
+/* Styling for the container holding the logo and h1 */
+header .logo-container {
+    display: flex; /* Uses flexbox layout for logo and h1 */
+    align-items: center; /* Vertically centers the content */
+    margin-left: 100px;
+}
+
+/* Styling for the image inside the logo-container */
+header .logo-container img {
+    width: 40px; /* Sets the width of the logo image */
+    margin-right: 10px; /* Adds space between the logo and the h1 */
+}
+
+/* Styling for the h1 element inside the header */
+header h1 {
+    font-size: 36px; /* Sets the font size */
+    color: white; /* Sets the text color */
+    font-weight: 700; /* Makes the text bold */
+    margin: 0; /* Removes default margin */
+}
+
+/* Styling for the shopping cart section within the header */
+header .shopping {
+    position: relative; /* Enables absolute positioning for child elements */
+    text-align: right; /* Aligns text to the right */
+    margin-right: 100px;
+}
+
+/* Styling for the shopping cart image */
+header .shopping img {
+    width: 40px; /* Sets the width of the image */
+}
+
+/* Styling for the notification badge on the shopping cart */
+header .shopping span {
+    background: #ff9100; /* Red background for the badge */
+    border-radius: 50%; /* Makes the badge round */
+    display: flex; /* Flexbox layout for centering content */
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+    color: black; /* White text color */
+    position: absolute; /* Absolute positioning for placement */
+    top: -5px; /* Positions the badge above the cart icon */
+    left: 80%; /* Positions the badge to the right of the cart icon */
+    padding: 3px 10px; /* Adds padding inside the badge */
+}
+
+
+.menuselection {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px; /* This will give a 50px margin from the header */
+}
+
+.selectionbutton {
+    display: flex;
+    gap: 24px;
+}
+
+.selectionbutton .button {
+    padding: 8px 28px;
+    border: 2px solid transparent;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50px;
+    background: #b50024;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.4s ease;
+    text-decoration: none; /* Remove underline from text */
+}
+
+.selectionbutton .button:hover {
+    color: #b50024;
+    background: #ff9100;
+    border-color: transparent;
+}
+
+
+
+
+
+/* Styling for the section name */
+.listname, .listname2, .listname3, .listname4, .listname5 {
+    font-size: 20px; /* Sets the font size */
+    color: #565360; /* Sets the text color */
+    font-weight: 700; /* Makes the text bold */
+    margin: 0; /* Removes default margin */
+    margin-top: 50px;
+}
+
+/* Styling for the list of items, using a grid layout */
+.list, .list2, .list3, .list4, .list5 {
+    display: grid; /* Uses grid layout for the list */
+    grid-template-columns: repeat(5, 1fr); /* Four columns of equal width */
+    column-gap: 30px; /* Adds space between columns */
+    row-gap: 20px; /* Adds space between rows */
+    margin-top: 20px; /* Adds top margin to the list */
+}
+
+/* Styling for each item in the list */
+.list .item, .list2 .item, .list3 .item, .list4 .item, .list5 .item {
+    text-align: center; /* Centers text inside each item */
+    background-color: white; /* Light grey background color for items */
+    padding: 20px; /* Adds padding inside each item */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); /* Adds a soft shadow on all sides */
+    letter-spacing: 1px; /* Increases space between letters */
+    border-radius: 15px; /* Makes the edges of the box round */
+    height: 400px; /* Sets a fixed height for each item */
+    display: flex; /* Flexbox layout for centering content */
+    flex-direction: column; /* Aligns content vertically */
+    justify-content: space-between; /* Ensures even spacing inside the box */
+    align-items: center; /* Centers items horizontally */
+}
+
+
+/* Styling for images inside each item */
+.list .item img, .list2 .item img, .list3 .item img, .list4 .item img, .list5 .item img {
+    max-width: 100%; /* Limit the maximum width of the image */
+    max-height: 100%; /* Limit the maximum height of the image */
+    object-fit: contain; /* Fit the image proportionally inside the container */
+    border-radius: 10px; /* Makes the edges of the images round */
+    margin-top: 10px; /* Adds top margin to the image */
+}
+
+/* Styling for the title inside each item */
+.list .item .title, .list2 .item .title, .list3 .item .title, .list4 .item .title, .list5 .item .title {
+    font-weight: 600; /* Makes the title bold */
+    margin-top: 10px; /* Adds top margin to the title */
+}
+
+/* Styling for the price inside each item */
+.list .item .price, .list2 .item .price, .list3 .item .price, .list4 .item .price, .list5 .item .price {
+    margin: 10px 0; /* Adds vertical margin around the price */
+}
+
+/* Styling for the button inside each item */
+.list .item button, .list2 .item button, .list3 .item button, .list4 .item button, .list5 .item button {
+    display: flex;
+    gap: 24px;
+    padding: 8px 28px;
+    border: 2px solid transparent;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50px;
+    background: #b50024;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.4s ease;
+    width: auto; /* Adjust width as needed */
+}
+
+/* Hover effect for the button inside each item */
+.list .item button:hover, .list2 .item button:hover, .list3 .item button:hover, .list4 .item button:hover, .list5 .item button:hover {
+    color: white;
+    background: rgb(46, 191, 30);
+    border-color: rgb(46, 191, 30);
+}
+
+
+
+
+/* Styling for the fixed position card */
+.card {
+    position: fixed; /* Fixes the card's position relative to the viewport */
+    top: 0; /* Aligns the card to the top */
+    left: 100%; /* Initially positions the card off-screen to the right */
+    width: 500px; /* Sets the width of the card */
+    background-color: #96001e; /* Dark brown background color for the card */
+    height: 100vh; /* Full viewport height */
+    transition: 0.5s; /* Smooth transition effect for changes */
+}
+
+/* Active state for the card, moving it into view */
+.active .card {
+    left: calc(100% - 500px); /* Moves the card into view */
+}
+
+/* Active state for the container, shifting it left */
+.active .container {
+    transform: translateX(-200px); /* Shifts the container left */
+}
+
+/* Styling for the card's header */
+.card h1 {
+    color: white;
+    font-weight: 600; /* Increased font weight for bold text */
+    margin: 0;
+    padding: 0 20px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+/* Styling for the checkout section inside the card */
+.card .checkOut {
+    position: absolute; /* Positions the checkout section at the bottom */
+    bottom: 0; /* Aligns to the bottom */
+    width: 100%; /* Full width */
+    display: grid; /* Grid layout */
+    grid-template-columns: repeat(2, 1fr); /* Two equal columns */
+}
+
+/* Styling for each button inside the checkout section */
+.card .checkOut div {
+    background-color: #ff9100; /* Golden yellow background color */
+    width: 100%; /* Full width */
+    height: 70px; /* Sets the height */
+    display: flex; /* Flexbox layout */
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+    font-weight: bold; /* Bold text */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+/* Styling for the second button inside the checkout section */
+.card .checkOut div:nth-child(2) {
+    background-color: #1C1F25; /* Dark background color */
+    color: #fff; /* White text color */
+}
+
+/* Styling for list items inside the card */
+.listCard li {
+    display: grid; /* Grid layout for list items */
+    grid-template-columns: 100px repeat(3, 1fr); /* Four columns: one fixed and three flexible */
+    color: #fff; /* White text color */
+    row-gap: 10px; /* Adds space between rows */
+}
+
+/* Styling for divs inside list items */
+.listCard li div {
+    display: flex; /* Flexbox layout */
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+}
+
+/* Styling for images inside list items */
+.listCard li img {
+    width: 90%; /* Sets the width of the images */
+}
+
+/* Styling for buttons inside list items */
+.listCard li button {
+    background-color: #ff9100; /* Golden yellow background color */
+    border: none; /* Removes border */
+    margin: 7px;
+}
+
+.back-to-top {
+	position: fixed;
+	bottom: 2rem;
+	right: 2rem;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #b50024;
+	border-radius: 50%;
+	padding: 0.5rem;
+	text-decoration: none;
+	transition: 0.2s ease-out;
+    opacity: 55%;
+}
+
+.back-to-top span {
+	color: #fff;
+	font-size: 3rem;
+	transition: 0.2s ease-out;
+}
+
+.back-to-top:hover {
+	background-color: #ff9100;
+}
+.back-to-top:hover span {
+	transform: translateY(-4px);
+}
+
+
+/* Popup styling */
+/* Popup styling */
+/* Keyframe for sliding in */
+@keyframes slideIn {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Keyframe for sliding out */
+@keyframes slideOut {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+}
+
+/* Popup styling */
+.popup {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed position */
+    top: 0; /* Position at the top */
+    left: 0; /* Align to the left */
+    width: 100%; /* Full width */
+    background-color: rgb(23, 153, 8); /* Background color */
+    color: #fff; /* Text color */
+    padding: 15px 20px; /* Padding */
+    text-align: center; /* Center text */
+    border-radius: 0 0 8px 8px; /* Rounded bottom corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow */
+    z-index: 1000; /* High z-index to ensure it's on top */
+    font-size: 18px; /* Font size */
+}
+
+/* Add the show class to trigger the slide-in animation */
+.popup.show {
+    display: block;
+    animation: slideIn 0.5s forwards;
+}
+
+/* Add the hide class to trigger the slide-out animation */
+.popup.hide {
+    animation: slideOut 0.5s forwards;
+}
+
+

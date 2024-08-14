@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpiceyPanda/order</title>
+    <link rel="stylesheet" href="checkout.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="images/spicepanda.png" alt="Logo">
+            <h1>SpiceyPanda</h1>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <div class="checkoutsection">
+            <h1>Order Summary</h1>
+            <ul class="summary">
+                <!-- Cart items will be inserted here by JavaScript -->
+            </ul>
+            <div class="order-summary-item">
+                <h2>Sub Total: </h2>
+                <span class="subtotal-amount">0</span>
+            </div>
+        </div>
+
+        <div class="additionalsection">
+            <h1>Payment Details</h1>
+            <div class="order-summary-item">
+                <h2>Sub Total</h2>
+                <span class="subtotal-amount">0</span>
+            </div>
+            <div class="order-summary-item">
+                <h2>Delivery Charge</h2>
+                <span class="delivery-amount">250</span>
+            </div>
+            <div class="order-summary-item">
+                <input type="text" class="additional-notes" placeholder="Enter Promo Code">
+                <button class="button">Apply</button>
+            </div>
+            <div class="order-summary-item">
+                <h2>Total</h2>
+                <span class="total-amount">0</span>
+            </div>
+            <div class="order-summary-item payment-method">
+                <div class="payment-option">
+                    <label>
+                        <input type="radio" name="payment-method" value="cash-on-delivery"> Cash on Delivery
+                    </label>
+                    <span class="description">Pay with cash when your order is delivered.</span>
+                </div>
+                <div class="payment-option">
+                    <label>
+                        <input type="radio" name="payment-method" value="card-payment"> Card Payment
+                    </label>
+                    <span class="description">Pay using your credit or debit card.</span>
+                </div>
+            </div>
+            <div class="order-summary-item">
+                <button class="checkout-button button">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup 2 message -->
+    <div class="popup" id="checkout-popup">
+        <div class="popup-content">
+            <span class="material-icons popup-icon">shopping_cart</span> <!-- Icon for checkout -->
+            <h2>Proceed to Checkout</h2>
+            <p>Are you sure?</p>
+            <button class="button" id="popup-yes-button">Yes</button>
+            <button class="button" id="popup-no-button">No</button>
+        </div>
+    </div>
+
+    <!-- Popup message -->
+    <div class="popup" id="order-popup">
+        <div class="popup-content">
+            <span class="material-icons popup-icon">check_circle</span>
+            <h2>Your Order is Confirmed!</h2>
+            <p>Thank you for your order! Your receipt is being downloaded, and we will contact you shortly to confirm the details.</p>
+            <button class="button" id="popup-ok-button">Okay</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.15/jspdf.plugin.autotable.min.js"></script>
+    <script src="checkout.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // Fetch user data from PHP session and store in localStorage
+    fetch('get_user_info.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                localStorage.setItem('firstName', data.first_name);
+            } else {
+                console.error('Error fetching user data:', data.message);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+
+    const popupOkButton = document.getElementById('popup-ok-button');
+    popupOkButton.addEventListener('click', function() {
+        generatePDF().then(() => {
+            window.location.href = "member.html";
+        }).catch(error => {
+            console.error('Error generating PDF:', error);
+        });
+    });
+
+    // Function to generate PDF
+    function generatePDF() {
+        return new Promise((resolve, reject) => {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Set font and text size
+            doc.setFont('Poppins', 'normal');
+            doc.setFontSize(16);
+
+            // Header section
+            doc.setFontSize(22); // Adjusted font size for the header title
+            doc.setFont('Poppins', 'bold');
+            doc.text('SpiceyPanda', 105, 20, { align: 'center' });
+            doc.setFontSize(16);
+            doc.text('No.80, Galle rd, Colombo 03', 105, 30, { align: 'center' });
+            doc.text('spiceypanda@gmail.com', 105, 40, { align: 'center' });
+            doc.text('Tel: 0112111111 / 0711111111', 105, 50, { align: 'center' });
+            doc.setFontSize(16); // Reset font size for subsequent lines in header
+            doc.setFont('Poppins', 'normal'); // Reset to normal font weight for other sections
+
+            doc.setLineDash([1, 2], 0); // 1 unit dash, 2 units space
+            doc.line(20, 53, 190, 53);
+            doc.setLineDash([]); // Reset to solid line for subsequent lines
+
+
+            // Date and time section
+            const currentDate = new Date();
+            const currentTime = currentDate.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+            const dateString = currentDate.toLocaleDateString('en-GB');
+            const firstName = localStorage.getItem('firstName');
+
+            doc.text(`Date: ${dateString}`, 20, 60);
+            doc.text(`Time: ${currentTime}`, 20, 65); // Adjusted position for time
+            doc.text(`Custimer name: ${firstName}`, 20, 70);   // Adjusted position for name
+            doc.text('Invoice No: 00001', 20, 75);
+
+            // Invoice section
+            let yPos = 68; // Adjusted position for invoice section
+            yPos += 10; // Adjust spacing as needed
+            doc.setLineDash([1, 2], 0); // 1 unit dash, 2 units space
+            doc.line(20, yPos, 190, yPos);
+            doc.setLineDash([]); // Reset to solid line for subsequent lines
+
+            yPos += 7; // Adjust spacing for the text position
+            doc.setFont('Poppins', 'bold');
+            doc.text('I N V O I C E', 105, yPos, { align: 'center' });
+
+            yPos += 4; // Adjust spacing for the bottom dotted line
+            doc.setLineDash([1, 2], 0); // 1 unit dash, 2 units space
+            doc.line(20, yPos, 190, yPos);
+            doc.setLineDash([]); // Reset to solid line for subsequent lines
+
+            // Receipt items section
+            yPos += 7; // Adjust spacing for the text position
+            doc.setFont('Poppins', 'normal'); // Reset font style for receipt items section
+
+            doc.text('Item', 20, yPos);
+            doc.text('Qty', 80, yPos);
+            doc.text('Price', 120, yPos);
+            doc.text('Amount', 160, yPos);
+
+            yPos += 3; // Additional spacing for the line after total
+            doc.setLineDash([1, 2], 0); // 1 unit dash, 2 units space
+            doc.line(20, yPos, 190, yPos);
+            doc.setLineDash([]); // Reset to solid line for subsequent lines
+
+            yPos += 8; // Adjusted spacing for items in the receipt
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            cartItems.forEach(item => {
+                doc.text(item.name, 20, yPos);
+                doc.text(item.quantity.toString(), 80, yPos);
+                doc.text(item.price.toFixed(2), 120, yPos);
+                doc.text((item.price * item.quantity).toFixed(2), 160, yPos);
+                yPos += 8; // Adjusted spacing for items in the receipt
+            });
+
+            // Total amounts section
+            const subtotal = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2);
+            const deliveryCharge = 250.00; // Static delivery charge
+            const total = (parseFloat(subtotal) + deliveryCharge).toFixed(2);
+
+            doc.setLineDash([1, 2], 0); // 1 unit dash, 2 units space
+            doc.line(20, yPos, 190, yPos);
+            doc.setLineDash([]); // Reset to solid line for subsequent lines
+            yPos += 5; // Reduced vertical space between sections
+
+            yPos += 5; // Reduced vertical space between sections
+            doc.text('Subtotal', 20, yPos);
+            doc.text(subtotal.toString(), 178, yPos, { align: 'right' });
+            yPos += 8; // Adjusted spacing for items in the receipt
+
+            doc.text('Delivery Charge', 20, yPos);
+            doc.text(deliveryCharge.toFixed(2).toString(), 178, yPos, { align: 'right' });
+            yPos += 8; // Adjusted spacing for items in the receipt
+
+            doc.setFont('Poppins', 'bold');
+            doc.text('Total', 20, yPos);
+            doc.setFont('Poppins', 'normal');
+            doc.text(total.toString(), 178, yPos, { align: 'right' });
+
+            yPos += 8; // Additional spacing for the line after total
+            doc.setLineDash([1, 2], 0); // 1 unit dash, 2 units space
+            doc.line(20, yPos, 190, yPos);
+            doc.setLineDash([]); // Reset to solid line for subsequent lines
+
+            // Thank you message
+            yPos += 8; // Adjust spacing as needed
+            doc.setFont('Poppins', 'bold');
+            doc.text('Thank You for Dining @SpiceyPanda!', 105, yPos, { align: 'center' });
+
+            yPos += 7; // Adjust spacing as needed
+            doc.text('visit us again!', 105, yPos, { align: 'center' });
+
+
+            // Save the PDF
+            doc.save('receipt.pdf');
+            resolve(); // Resolve the promise after PDF is saved
+        });
+    }
+});
+
+
+    </script>
+    
+    
+</body>
+</html>

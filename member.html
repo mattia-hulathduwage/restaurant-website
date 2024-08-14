@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpiceyPanda/Member</title>
+  <link rel="stylesheet" href="member.css">
+  <!-- Link to Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="images/spicepanda.png" alt="Logo">
+            <h1>SpiceyPanda</h1>
+        </div>
+        <div class="account">
+            <img src="images/account_svg.svg" alt="account">
+            <span id="user-name">name</span>
+            <i class="fas fa-caret-down" id="dropdown-icon"></i>
+            <div class="dropdown-content" id="dropdown-content">
+                <!-- Dropdown content here -->
+                <a href="personal_info.html">Profile</a>
+                <a href="#">Order history</a>
+                <a href="#">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="order.html">
+                <h1>Pickup</h1>
+                <span>Choose store location</span>
+                <div class="dropdown">
+                    <select id="pickup-delivery" name="pickup-delivery">
+                        <option value="dehiwala">Dehiwala</option>
+                        <option value="gangaramaya">Gangaramaya</option>
+                        <option value="Port city">Port city</option>
+                    </select>
+                </div>
+                <button type="submit">Order</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="order.html">
+                <h1>Delivery</h1>
+                <input type="text" placeholder="Enter Delivery Address" />
+                <button type="submit">Order</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Hi!</h1>
+                    <p>Want to have your delicious order at your doorstep?</p>
+                    <button class="ghost" id="signIn">Delivery</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hi!</h1>
+                    <p>Wanna grab your order on the go?</p>
+                    <button class="ghost" id="signUp">Pickup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="offers">
+        <h1>Deals of the week</h1>
+        <div class="deals-row">
+            <div class="deal1">
+                <img src="images/burger_offer.png" alt="Burger Offer">
+            </div>
+            <div class="deal1">
+                <img src="images/buy1_offer.png" alt="Buy 1 Get 1 Offer">
+            </div>
+            <div class="deal1">
+                <img src="images/pizza_offer.png" alt="Pizza Offer">
+            </div>
+        </div>
+        <div class="deals-row">
+            <div class="deal1">
+                <img src="images/boba_offer.png" alt="Sushi Offer">
+            </div>
+            <div class="deal1">
+                <img src="images/cap_offer.png" alt="Salad Offer">
+            </div>
+            <div class="deal1">
+                <img src="images/gelato_offer.png" alt="Salad Offer">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fetch the first name and display it next to the account icon
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('get_user_info.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        document.getElementById('user-name').textContent = data.first_name;
+                    } else {
+                        console.log('User not logged in');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
+
+
+       
+
+        document.addEventListener('DOMContentLoaded', function() {
+    var userName = document.getElementById('dropdown-icon');
+    var dropdownContent = document.getElementById('dropdown-content');
+
+    // Toggle dropdown visibility on user-name click
+    userName.addEventListener('click', function(event) {
+        event.stopPropagation(); // Prevents the click from bubbling up and closing the dropdown
+        if (dropdownContent.classList.contains('show')) {
+            dropdownContent.classList.remove('show');
+            dropdownContent.classList.add('hide');
+            setTimeout(() => {
+                dropdownContent.style.display = 'none';
+            }, 300); // Match this with the duration of the animation
+        } else {
+            dropdownContent.style.display = 'block';
+            dropdownContent.classList.remove('hide');
+            setTimeout(() => {
+                dropdownContent.classList.add('show');
+            }, 10); // Small delay to ensure display change is applied
+        }
+    });
+
+    // Close dropdown when user clicks outside of it
+    document.addEventListener('click', function(event) {
+        if (!userName.contains(event.target) && !dropdownContent.contains(event.target)) {
+            if (dropdownContent.classList.contains('show')) {
+                dropdownContent.classList.remove('show');
+                dropdownContent.classList.add('hide');
+                setTimeout(() => {
+                    dropdownContent.style.display = 'none';
+                }, 300); // Match this with the duration of the animation
+            }
+        }
+    });
+
+    // Close dropdown when user clicks on a link inside the dropdown
+    dropdownContent.addEventListener('click', function(event) {
+        if (event.target.tagName === 'A') {
+            dropdownContent.classList.remove('show');
+            dropdownContent.classList.add('hide');
+            setTimeout(() => {
+                dropdownContent.style.display = 'none';
+            }, 300); // Match this with the duration of the animation
+        }
+    });
+});
+
+
+
+
+    </script>
+    <script src="member.js"></script>
+</body>
+</html>

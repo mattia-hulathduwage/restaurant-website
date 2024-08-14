@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpiceyPanda/Member</title>
+  <link rel="stylesheet" href="personal_info.css">
+  <!-- Link to Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="images/spicepanda.png" alt="Logo">
+            <h1>SpiceyPanda</h1>
+        </div>
+        <div class="account">
+            <img src="images/account_svg.svg" alt="account">
+            <span id="user-name"></span>
+        </div>
+    </header>
+
+    <div class="personal_details">
+        <h1>Manage My Account</h1>
+        <div class="profile_contact_container">
+            <div class="profile">
+                <div class="profile-header">
+                    <h2>Personal Profile</h2>
+                    <a href="#" class="edit-link">edit</a>
+                </div>
+                <div class="profile-content">
+                    <p><strong></strong> <span id="first-name"></span></p>
+                    <p><strong></strong> <span id="email"></span></p>
+                </div>
+            </div>
+            <div class="Contact">
+                <div class="profile-header">
+                    <h2>Contact Info</h2>
+                    <a href="#" class="edit-link">edit</a>
+                </div>
+                <div class="profile-content">
+                    <p>(+94)<span id="telephone"></span></p>
+                    <p><strong></strong> <span id="address"></span></p>
+                </div>
+            </div>
+            <div class="payment">
+                <div class="profile-header">
+                    <h2>Card Payment</h2>
+                    <a href="#" class="edit-link">edit</a>
+                </div>
+                <div class="img-content">
+                    <img src="images/card_pay.png" alt="card">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script>
+        // Fetch user details and display them
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('get_user_info.php')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);  // Debugging line to check data
+                    if (data.status === 'success') {
+                        document.getElementById('user-name').textContent = data.first_name;
+                        document.getElementById('first-name').textContent = data.first_name;
+                        document.getElementById('email').textContent = data.email;
+                        document.getElementById('telephone').textContent = data.telephone;
+                        document.getElementById('address').textContent = data.address; // Update address display
+                    } else {
+                        console.log('User not logged in');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
+    
+</body>
+</html>

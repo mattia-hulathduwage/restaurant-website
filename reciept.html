@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt</title>
+    <style>
+        /* Basic styling for the receipt */
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .receipt {
+            width: 90%;
+            max-width: 600px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+            border: 1cm;
+        }
+
+        .receipt h2 {
+            text-align: center;
+            color: #b50024;
+            font-weight: bold;
+            /* Adjust font weight as needed */
+        }
+
+        .receipt h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 500;
+            /* Adjust font weight as needed */
+        }
+
+        .datatime {
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        .datatime .pdate,
+        .datatime .ptime,
+        .datatime .customertel,
+        .datatime .customername {
+            font-weight: 500;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+
+        .datatime .pdate span,
+        .datatime .ptime span,
+        .datatime .customertel span,
+        .datatime .customername span {
+            margin-left: 5px;
+            /* Adjust spacing between "Date:"/"Time:" and values */
+        }
+
+        .sub {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 400;
+            margin-top: 20px;
+            padding-top: 10px;
+            margin-bottom: 17px;
+            border-top: 1px solid #ddd;
+        }
+
+        .sub .itemsub,
+        .sub .quantitysub,
+        .sub .pricesub,
+        .sub .amountsub {
+            text-align: left;
+            /* Align text to the left */
+        }
+
+        .sub .itemsub span,
+        .sub .quantitysub span,
+        .sub .pricesub span,
+        .sub .amountsub span {
+            font-weight: 500;
+            /* Change this value to adjust the font weight */
+        }
+
+        .sub .quantitysub {
+            margin-left: 110px;
+            /* Adjust the margin as needed */
+        }
+
+        .sub .pricesub {
+            margin-left: 30px;
+            /* Adjust the margin as needed */
+        }
+
+        .sub .amountsub {
+            margin-left: 0px;
+            /* Adjust the margin as needed */
+        }
+
+        /* Additional styling for the receipt items */
+        .bill {
+            margin-bottom: 20px;
+        }
+
+        .receipt-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+        }
+
+        .receipt-item>div {
+            text-align: center;
+        }
+
+        .receipt-item .item-name {
+            flex: 3;
+            /* Adjust the width as needed */
+            text-align: left;
+            /* Align name to the left */
+        }
+
+        .receipt-item .item-quantity {
+            flex: 1;
+            /* Adjust the width as needed */
+        }
+
+        .receipt-item .item-amount,
+        .receipt-item .item-price {
+            flex: 2;
+            /* Adjust the width as needed */
+            text-align: right;
+            /* Align price to the right */
+        }
+
+        .amounts {
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        .amounts div {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .amounts span {
+            font-weight: bold;
+        }
+
+        .button-link {
+            text-decoration: none;
+            text-align: center;
+            display: block;
+            margin-top: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="receipt">
+        <h2>SpiceyPanda</h2>
+        <h3>Galle rd, Colombo 03</h3>
+        <h3>Tel: 0112111111 / 0711111111</h3>
+        <div class="datatime">
+            <div class="pdate">
+
+            </div>
+            <div class="ptime">
+
+            </div>
+            <div class="customername">
+                <!-- customer name added here -->
+            </div>
+            <div class="customertel">
+                <!-- customer telephone added here -->
+            </div>
+        </div>
+        <div class="sub">
+            <div class="itemsub"><span>Item</span></div>
+            <div class="quantitysub"><span>Quantity</span></div>
+            <div class="pricesub"><span>Price</span></div>
+            <div class="amountsub"><span>Amount</span></div>
+        </div>
+        <div class="bill">
+            <!-- Items will be dynamically added here -->
+        </div>
+        <div class="amounts">
+            <div>Subtotal: <span class="subtotal-amount"></span></div>
+            <div>Delivery Charge: <span class="delivery-amount"></span></div>
+            <div>Total: <span class="total-amount"></span></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            let receiptItems = document.querySelector('.bill');
+            let subtotalAmount = document.querySelector('.subtotal-amount');
+            let deliveryAmount = document.querySelector('.delivery-amount');
+            let totalAmount = document.querySelector('.total-amount');
+            let dateElement = document.querySelector('.pdate'); // Assuming .pdate is the class for 'Date:'
+            let timeElement = document.querySelector('.ptime'); // Assuming .ptime is the class for 'Time:'
+
+            // Function to calculate subtotal based on items in cart
+            function calculateTotalPrice() {
+                return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+            }
+
+            // Function to generate receipt HTML
+            function generateReceipt() {
+                let receiptHTML = '';
+                cartItems.forEach(item => {
+                    receiptHTML += `
+                <div class="receipt-item">
+                    <div class="item-name">${item.name}</div>
+                    <div class="item-quantity">${item.quantity}</div>
+                    <div class="item-amount">${(item.price).toLocaleString()}</div>
+                    <div class="item-price">${(item.price * item.quantity).toLocaleString()}</div>
+                </div>`;
+                });
+                receiptItems.innerHTML = receiptHTML;
+
+                // Update subtotal, delivery charge, and total in receipt
+                subtotalAmount.textContent = calculateTotalPrice().toLocaleString();
+                deliveryAmount.textContent = '250'; // Static delivery charge for demonstration
+                totalAmount.textContent = (calculateTotalPrice() + 250).toLocaleString();
+
+                // Update date and time in receipt
+                displayDate();
+                displayTime();
+            }
+
+            // Function to display current date
+            function displayDate() {
+                const currentDate = new Date();
+                const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+                const day = currentDate.toLocaleDateString(undefined, options);
+                dateElement.textContent = `Date: ${day}`;
+            }
+
+
+            // Function to display current time
+            function displayTime() {
+                const currentTime = new Date();
+                const options = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+                timeElement.textContent = `Time: ${currentTime.toLocaleTimeString(undefined, options)}`;
+            }
+
+            // Call generateReceipt when on receipt.html page
+            generateReceipt();
+        });
+
+
+
+
+
+
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Function to add customer name
+            function addCustomerName(name) {
+                const customerNameElement = document.querySelector('.customername');
+                customerNameElement.textContent = `Customer Name: ${name}`;
+            }
+
+            // Function to add customer telephone
+            function addCustomerTelephone(telephone) {
+                const customerTelElement = document.querySelector('.customertel');
+                customerTelElement.textContent = `Customer Tel: ${telephone}`;
+            }
+
+            // Function to fetch and display customer information
+            function displayCustomerInfo() {
+                fetch('get_user_info.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            addCustomerName(data.first_name); // Update customer name
+                            addCustomerTelephone(data.telephone); // Update customer telephone
+                        } else {
+                            console.log('Error: User not logged in');
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+
+            // Call displayCustomerInfo to fetch and display customer information
+            displayCustomerInfo();
+        });
+
+    </script>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <script src=""></script> <!-- Link to your JavaScript file -->
+</body>
+
+</html>
